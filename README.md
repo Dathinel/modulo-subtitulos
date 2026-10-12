@@ -21,7 +21,9 @@
 
 Corre en: Vulkan (GPU) o CPU. Motor: whisper.cpp vía Whisper.net 1.9.1 (MIT). Rodaje lo abre como un proceso aparte y le habla por una tubería con nombre ([protocolo de módulos](https://github.com/Dathinel/rodaje/blob/main/docs/protocolo-modulos.md)); lo que devuelve es una propuesta que se aplica como un paso del historial (Ctrl+Z la deshace).
 
-## Modelos (729 MB)
+Desde 1.1, Rodaje elige con su perfil de IA el modelo, los hilos y cuántos tramos de ~28 s transcribe a la vez (`parallel`), según la VRAM, la RAM y los hilos del equipo: dos tramos a la vez en una RTX 3050 transcriben 3 min de voz en 17,7 s en lugar de 29,6, con el mismo acierto.
+
+## Modelos (786 MB)
 
 El `.paquete` no trae los modelos: Rodaje los baja después de instalar el módulo, comprueba su SHA-256 y los deja en `modelos\` dentro de la carpeta del módulo. Si la descarga se corta, sigue desde donde quedó.
 
@@ -29,10 +31,11 @@ El `.paquete` no trae los modelos: Rodaje los baja después de instalar el módu
 |---|---|---|---|
 | `whisper-large-v3-turbo-q5` | 547 MB | MIT | Hugging Face `ggerganov/whisper.cpp` @ `5359861c` |
 | `whisper-small-q5-cpu` | 181 MB | MIT | Hugging Face `ggerganov/whisper.cpp` @ `5359861c` |
+| `whisper-base-q5-rapido` | 57 MB | MIT | Hugging Face `ggerganov/whisper.cpp` @ `5359861c` (desde 1.1: «Calidad de la IA › Rápida» sin GPU o con muy poca RAM) |
 
 ## Instalar en Rodaje
 
-En Rodaje, Complementos → Instalar lo baja, comprueba la firma del catálogo y el hash, lo instala y baja sus modelos. A mano: descarga `modulo-subtitulos-1.0.0.paquete` de las [releases](https://github.com/Dathinel/modulo-subtitulos/releases) y usa «Instalar desde archivo…» en Complementos; después, «Bajar modelos».
+En Rodaje, Complementos → Instalar lo baja, comprueba la firma del catálogo y el hash, lo instala y baja sus modelos. A mano: descarga `modulo-subtitulos-1.1.0.paquete` de las [releases](https://github.com/Dathinel/modulo-subtitulos/releases) y usa «Instalar desde archivo…» en Complementos; después, «Bajar modelos».
 
 ## Código
 
